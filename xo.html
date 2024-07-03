@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>احمد</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000; /* خلفية سوداء */
+      margin: 0;
+      padding: 0;
+      color: #fff; /* لون النص أبيض */
+    }
+
+    h1 {
+      color: #FF0000; /* لون العنوان أحمر */
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    td {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      font-size: 48px;
+      border: 2px solid #FF0000; /* لون حدود الجدول أحمر */
+      cursor: pointer;
+      color: #fff; /* لون النص في الجدول أبيض */
+    }
+
+    .player-x {
+      color: #FF0000; /* لون اللاعب X أحمر */
+    }
+
+    .player-o {
+      color: #0000FF; /* لون اللاعب O أزرق */
+    }
+  </style>
+</head>
+<body>
+  <h1>لعبة إكس أو</h1>
+  <table>
+    <tr>
+      <td onclick="makeMove(0, 0)"></td>
+      <td onclick="makeMove(0, 1)"></td>
+      <td onclick="makeMove(0, 2)"></td>
+    </tr>
+    <tr>
+      <td onclick="makeMove(1, 0)"></td>
+      <td onclick="makeMove(1, 1)"></td>
+      <td onclick="makeMove(1, 2)"></td>
+    </tr>
+    <tr>
+      <td onclick="makeMove(2, 0)"></td>
+      <td onclick="makeMove(2, 1)"></td>
+      <td onclick="makeMove(2, 2)"></td>
+    </tr>
+  </table>
+
+  <script>
+    var board = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ];
+
+    var currentPlayer = 'X';
+
+    function displayBoard() {
+      var table = document.getElementsByTagName('table')[0];
+      var cells = table.getElementsByTagName('td');
+
+      for (var i = 0; i < cells.length; i++) {
+        var row = Math.floor(i / 3);
+        var col = i % 3;
+        cells[i].innerHTML = board[row][col];
+
+        if (board[row][col] === 'X') {
+          cells[i].classList.add('player-x');
+        } else if (board[row][col] === 'O') {
+          cells[i].classList.add('player-o');
+        } else {
+          cells[i].classList.remove('player-x', 'player-o');
+        }
+      }
+    }
+
+    function isGameOver() {
+      // Check rows
+      for (var i = 0; i < board.length; i++) {
+        if (
+          board[i][0] !== '' &&
+          board[i][0] === board[i][1] &&
+          board[i][1] === board[i][2]
+        ) {
+          return true;
+        }
+      }
+
+      // Check columns
+      for (var j = 0; j < board[0].length; j++) {
+        if (
+          board[0][j] !== '' &&
+          board[0][j] === board[1][j] &&
+          board[1][j] === board[2][j]
+        ) {
+          return true;
+        }
+      }
+
+      // Check diagonals
+      if (
+        board[0][0] !== '' &&
+        board[0][0] === board[1][1] &&
+        board[1][1] === board[2][2]
+      ) {
+        return true;
+      }
+
+      if (
+        board[0][2] !== '' &&
+        board[0][2] === board[1][1] &&
+        board[1][1] === board[2][0]
+      ) {
+        return true;
+      }
+
+      // Check for a tie
+      for (var row = 0; row < board.length; row++) {
+        for (var col = 0; col < board[row].length; col++) {
+          if (board[row][col] === '') {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function isValidMove(row, col) {
+      if (row < 0 || row >= board.length || col < 0 || col >= board[row].length) {
+        return false;
+      }
+
+      if (board[row][col] !== '') {
+        return false;
+      }
+
+      return true;
+    }
+
+    function makeMove(row,col) {
+      if (!isValidMove(row, col)) {
+        return;
+      }
+
+      board[row][col] = currentPlayer;
+      displayBoard();
+
+      if (isGameOver()) {
+        alert('لقد فاز اللاعب ' + currentPlayer);
+        resetGame();
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    }
+
+    function resetGame() {
+      board = [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']
+      ];
+      currentPlayer = 'X';
+      displayBoard();
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زر HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000; /* خلفية سوداء */
+            color: #fff; /* لون النص أبيض */
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FF0000; /* لون أحمر */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #D32F2F; /* لون أحمر غامق عند التمرير */
+        }
+    </style>
+</head>
+<body>
+    <h1>زر للانتقال إلى القائمة</h1>
+    <p>
+        <a class="button" href="lol.html">الذهاب إلى الصفحة الرئيسة</a>
+    </p>
+</body>
+</html>

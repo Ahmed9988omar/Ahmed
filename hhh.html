@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كلمة متحركة وزر HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            background-color: #000; /* خلفية سوداء */
+            color: #fff; /* لون النص أبيض */
+        }
+
+        .moving-word {
+            position: absolute;
+            font-size: 36px;
+            color: #FF0000; /* لون أحمر */
+            animation: moveWord 10s linear infinite;
+        }
+
+        @keyframes moveWord {
+            0% {
+                left: -200px;
+            }
+            100% {
+                left: calc(100% + 200px);
+            }
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FF0000; /* لون أحمر */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #D32F2F; /* لون أحمر غامق عند التمرير */
+        }
+    </style>
+</head>
+<body>
+    <h1>كلمة متحركة: بريتز نوب</h1>
+    <div class="moving-word">بريتز نوب</div>
+
+    <h1>زر للانتقال إلى القائمة</h1>
+    <p>
+        <a class="button" href="lol.html">الذهاب إلى الصفحة الرئيسية</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار التنمر: أسئلة حول بريتز</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000; /* خلفية سوداء */
+            color: #fff; /* لون النص أبيض */
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .option {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #FF0000; /* لون أحمر */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .option:hover {
+            background-color: #D32F2F; /* لون أحمر غامق عند التمرير */
+        }
+    </style>
+</head>
+<body>
+    <h1>اختبار التنمر: أسئلة حول بريتز</h1>
+
+    <div class="question" id="question1">
+        <p>لماذا يجب قيام كل الأشخاص بالتنمر على بريتز؟</p>
+        <div class="options">
+            <button class="option" onclick="checkAnswer(1, 'a')">لأن صورته بيض</button>
+            <button class="option" onclick="checkAnswer(1, 'c')">لأن أحمد يحب التنمر على بريتز</button>
+            <button class="option" onclick="checkAnswer(1, 'c')">لا يوجد سبب</button>
+        </div>
+    </div>
+
+    <div class="question" id="question2" style="display: none;">
+        <p>لماذا يحب أحمد التنمر؟</p>
+        <div class="options">
+            <button class="option" onclick="checkAnswer(2, 'a')">لأنه يحب التنمر على الجميع</button>
+            <button class="option" onclick="checkAnswer(2, 'b')">لأنه يريد التركيز</button>
+            <button class="option" onclick="checkAnswer(2, 'c')">لأنه يستمتع بذلك</button>
+        </div>
+    </div>
+
+    <div class="question" id="question3" style="display: none;">
+        <p>لماذا صورة بريتز بيض؟</p>
+        <div class="options">
+            <button class="option" onclick="checkAnswer(3, 'a')">لأنها بيض</button>
+            <button class="option" onclick="checkAnswer(3, 'c')">لأنها بيض وبيض</button>
+            <button class="option" onclick="checkAnswer(3, 'c')">لأنها بيض برو ماكس </button>
+        </div>
+    </div>
+
+    <div id="result" style="display: none;">
+        <p id="result-text"></p>
+    </div>
+
+    <script>
+        var currentQuestion = 1;
+        var correctAnswers = ['a', 'a', 'c'];
+
+        function checkAnswer(questionNumber, selectedOption) {
+            if (selectedOption === correctAnswers[questionNumber - 1]) {
+                if (questionNumber < 3) {
+                    document.getElementById('question' + questionNumber).style.display = 'none';
+                    document.getElementById('question' + (questionNumber + 1)).style.display = 'block';
+                } else {
+                    showResult(true);
+                }
+            } else {
+                showResult(false);
+            }
+        }
+
+        function showResult(isCorrect) {
+            var resultText = document.getElementById('result-text');
+            if (isCorrect) {
+                resultText.textContent = "صحيح! أنت أحمد، ؟";
+            } else {
+                resultText.textContent = "خطأ! حاول مرة أخرى.";
+            }
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زر HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000; /* خلفية سوداء */
+            color: #fff; /* لون النص أبيض */
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FF0000; /* لون أحمر */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #D32F2F; /* لون أحمر غامق عند التمرير */
+        }
+    </style>
+</head>
+<body>
+    <h1>زر للانتقال إلى القائمة</h1>
+    <p>
+        <a class="button" href="lol.html">الذهاب إلى الصفحة الرئيسة</a>
+    </p>
+</body>
+</html>
